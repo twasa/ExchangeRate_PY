@@ -31,7 +31,9 @@ $ENV:EX_API_KEY=''
 ```
 
 ## input and output example TWD to USD
+```txt
 Source currency: TWD
 Target currency: USD
 TWD Amount: 5000
 USD Amount: 161.155
+```
