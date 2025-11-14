@@ -33,6 +33,7 @@ def currency_list_live() -> dict[Any, Any]:
     request_uri = f"{api_base_uri}/list?access_key={api_key}"
     json_data = http_request_handler(request_uri)
     currencies = json_data.get('currencies')
+    currency_list_frindly_output(currencies)
     with open('currency_code.json', 'w') as f:
         json.dump(currencies, f, indent=4)
 
