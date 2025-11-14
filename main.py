@@ -3,10 +3,16 @@ import pprint
 import os
 import json
 from typing import Any
+from dotenv import load_dotenv
 
-api_key = os.getenv("EX_API_KEY", "")
 api_base_uri = "https://api.exchangerate.host"
 currency_list_local_data = 'currency_code.json'
+
+load_dotenv()
+api_key = os.getenv("EX_API_KEY", "")
+
+def check_file(path: str):
+    return os.path.exists(path) and os.path.isfile(path)
 
 def http_request_handler(uri: str):
     try:
@@ -32,6 +38,12 @@ def currency_list_local():
     with open(currency_list_local_data, 'rb') as f:
         currency_list = json.loads(f.read())
         currency_list_frindly_output(currency_list)
+
+def currency_list_load():
+    if check_file():
+        currency_list_local
+        return
+    currency_list_live
 
 def exchange_request() -> dict[Any, Any]:
     src_currency = input("Source currency: ")
