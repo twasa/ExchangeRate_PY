@@ -55,5 +55,5 @@ def exchange_request() -> dict[Any, Any]:
     print(f"{target_currency} Amount: {result}")
 
 if __name__ == "__main__":
-    currency_list_local()
+    currency_list_load()
     exchange_request()
