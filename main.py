@@ -1,15 +1,28 @@
 import requests
 import pprint
 import os
+import sys
 import json
+
 from typing import Any
 from dotenv import load_dotenv
 
 api_base_uri = "https://api.exchangerate.host"
-currency_list_local_data = 'currency_code.json'
+currency_code_json_file_path = ''
+currency_code_json_file_name = 'currency_code.json'
 
 load_dotenv()
 api_key = os.getenv("EX_API_KEY", "")
+
+def get_exec_path() -> str:
+    # Get the path used to invoke the script
+    script_invocation_path = sys.argv[0]
+
+    # Get the absolute path of the script
+    absolute_script_path = os.path.abspath(script_invocation_path)
+
+    # Get the directory containing the script
+    return os.path.dirname(absolute_script_path)
 
 def check_file(path: str):
     return os.path.exists(path) and os.path.isfile(path)
@@ -34,16 +47,16 @@ def currency_list_live() -> dict[Any, Any]:
     json_data = http_request_handler(request_uri)
     currencies = json_data.get('currencies')
     currency_list_frindly_output(currencies)
-    with open('currency_code.json', 'w') as f:
+    with open(currency_code_json_file_path, 'w') as f:
         json.dump(currencies, f, indent=4)
 
 def currency_list_local():
-    with open(currency_list_local_data, 'rb') as f:
+    with open(currency_code_json_file_path, 'rb') as f:
         currency_list = json.loads(f.read())
         currency_list_frindly_output(currency_list)
 
 def currency_list_load():
-    if check_file(currency_list_local_data):
+    if check_file(currency_code_json_file_path):
         currency_list_local()
         return
     currency_list_live()
@@ -58,5 +71,7 @@ def exchange_request() -> dict[Any, Any]:
     print(f"{target_currency} Amount: {result}")
 
 if __name__ == "__main__":
+    exec_dir_path = get_exec_path()
+    currency_code_json_file_path = f"{exec_dir_path}/{currency_code_json_file_name}"
     currency_list_load()
     exchange_request()
