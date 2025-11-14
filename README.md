@@ -9,6 +9,11 @@ A Python implement currency exchange rate cli tool
 
 ## build to binary
 - install uv before scripts executive
+- dependncies sync
+```
+uv sync
+```
+
 - Build on Microsoft Windows
 ```ps1
 ./build.ps1
