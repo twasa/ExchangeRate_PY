@@ -40,7 +40,7 @@ def currency_list_local():
         currency_list_frindly_output(currency_list)
 
 def currency_list_load():
-    if check_file():
+    if check_file(currency_list_local_data):
         currency_list_local
         return
     currency_list_live
