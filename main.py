@@ -32,7 +32,9 @@ def currency_list_frindly_output(currency_list: dict):
 def currency_list_live() -> dict[Any, Any]:
     request_uri = f"{api_base_uri}/list?access_key={api_key}"
     json_data = http_request_handler(request_uri)
-    pprint.pp(json_data)
+    currencies = json_data.get('currencies')
+    with open('currency_code.json', 'w') as f:
+        json.dump(currencies, f, indent=4)
 
 def currency_list_local():
     with open(currency_list_local_data, 'rb') as f:
@@ -41,9 +43,9 @@ def currency_list_local():
 
 def currency_list_load():
     if check_file(currency_list_local_data):
-        currency_list_local
+        currency_list_local()
         return
-    currency_list_live
+    currency_list_live()
 
 def exchange_request() -> dict[Any, Any]:
     src_currency = input("Source currency: ")
