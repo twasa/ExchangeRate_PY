@@ -1,5 +1,6 @@
 **/build
 **/dist
+**/.env
 .python-version
 main.spec
 uv.lock
