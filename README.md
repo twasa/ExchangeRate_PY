@@ -5,7 +5,7 @@ A Python implement currency exchange rate cli tool
 - [uv](https://github.com/astral-sh/uv)
 
 ## request
-- exchangerate.host API key
+- [exchangerate.host](https://exchangerate.host/signup/free) API key
 
 ## build to binary
 - install uv before scripts executive
