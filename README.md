@@ -1,4 +1,5 @@
 # Exchange rate implement with Python
+A Python implement currency exchange rate cli tool
 
 ## package manager
 - [uv](https://github.com/astral-sh/uv)
@@ -7,12 +8,13 @@
 - exchangerate.host API key
 
 ## build to binary
-- Microsoft Windows
+- install uv before scripts executive
+- Build on Microsoft Windows
 ```ps1
 ./build.ps1
 ```
 
-- Unix
+- Build on Unix
 ```shell
 ./build.sh
 ```
