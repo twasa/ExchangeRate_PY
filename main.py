@@ -10,9 +10,8 @@ from dotenv import load_dotenv
 api_base_uri = "https://api.exchangerate.host"
 currency_code_json_file_path = ''
 currency_code_json_file_name = 'currency_code.json'
+api_key = ''
 
-load_dotenv()
-api_key = os.getenv("EX_API_KEY", "")
 
 def get_exec_path() -> str:
     # Get the path used to invoke the script
@@ -73,5 +72,7 @@ def exchange_request() -> dict[Any, Any]:
 if __name__ == "__main__":
     exec_dir_path = get_exec_path()
     currency_code_json_file_path = f"{exec_dir_path}/{currency_code_json_file_name}"
+    load_dotenv(f"{exec_dir_path}/.env")
+    api_key = os.getenv("EX_API_KEY", "")
     currency_list_load()
     exchange_request()
