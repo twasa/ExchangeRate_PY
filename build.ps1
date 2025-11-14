@@ -1,1 +1,1 @@
-uv run pyinstaller -F --add-data currency_code.json:currency_code.json main.py
+uv run pyinstaller -F main.py
