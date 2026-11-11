@@ -1,0 +1,33 @@
+[
+  {
+    "name": "TWD 轉 USD",
+    "from": "TWD",
+    "to": "USD"
+  },
+  {
+    "name": "USD 轉 TWD",
+    "from": "USD",
+    "to": "TWD"
+  },
+  {
+    "name": "JPY 轉 TWD",
+    "from": "JPY",
+    "to": "TWD"
+  },
+  {
+    "name": "TWD 轉 JPY",
+    "from": "TWD",
+    "to": "JPY"
+  },
+  {
+    "name": "EUR 轉 TWD",
+    "from": "EUR",
+    "to": "TWD"
+  },
+  {
+    "name": "USD 轉 JPY",
+    "from": "USD",
+    "to": "JPY"
+  }
+]
+
