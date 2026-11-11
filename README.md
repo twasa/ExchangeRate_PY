@@ -1,46 +1,90 @@
 # Exchange rate implement with Python
-A Python implement currency exchange rate cli tool
 
-## package manager
-- [uv](https://github.com/astral-sh/uv)
+A lightweight Python currency exchange rate CLI tool powered by [exchangerate.host](https://exchangerate.host).
 
-## request
-- [exchangerate.host](https://exchangerate.host/signup/free) API key
+## Features
+- **Quick Currency Pair Selection**: Choose frequently used currency pairs with a single number key.
+- **Customizable Configuration**: Customize favorite currency pairs in `common_pairs.json`.
+- **Automatic Fallback**: Transparently calculates rates via `/live` when `/convert` is restricted on free-tier API keys.
+- **Offline Currency List Cache**: Caches 170+ currency codes locally to `currency_code.json`.
 
-## build to binary
-- install uv before scripts executive
-- dependncies sync
-```
+## Requirements
+- Package manager: [uv](https://github.com/astral-sh/uv)
+- API Key: [exchangerate.host](https://exchangerate.host/signup/free) API key (free tier supported)
+
+## Installation & Setup
+1. Sync dependencies with `uv`:
+```shell
 uv sync
 ```
 
-- Build on Microsoft Windows
+2. Configure API Key:
+Create a `.env` file in the project directory:
+```env
+EX_API_KEY="your_api_key_here"
+```
+Or set the environment variable:
+- **Unix**: `export EX_API_KEY="your_api_key_here"`
+- **Windows (PowerShell)**: `$ENV:EX_API_KEY="your_api_key_here"`
+
+## Run
+```shell
+uv run python main.py
+```
+
+## Build to Binary
+- **Windows**:
 ```ps1
 ./build.ps1
 ```
-
-- Build on Unix
+- **Unix**:
 ```shell
 ./build.sh
 ```
 
-## execute
-- Unix
-```shell
-export EX_API_KEY=''
-./dist/main
+The compiled standalone executable will be placed in the `dist/` directory.
+
+## Configuration: `common_pairs.json`
+You can customize frequently used currency pairs by editing `common_pairs.json` (auto-generated on first run):
+```json
+[
+  {
+    "name": "TWD 轉 USD",
+    "from": "TWD",
+    "to": "USD"
+  },
+  {
+    "name": "USD 轉 TWD",
+    "from": "USD",
+    "to": "TWD"
+  }
+]
 ```
 
-- Microsoft Windows
-```ps1
-$ENV:EX_API_KEY=''
-./dist/main
-```
+## Input and Output Examples
 
-## input and output example TWD to USD
+### Quick Selection (e.g. Option 1: TWD to USD)
 ```txt
-Source currency: TWD
-Target currency: USD
+=== 常用幣別轉換 (Quick Currency Exchange) ===
+[1] TWD 轉 USD
+[2] USD 轉 TWD
+[3] JPY 轉 TWD
+[4] TWD 轉 JPY
+[5] EUR 轉 TWD
+[6] USD 轉 JPY
+[0] 自訂輸入幣別 (Custom Currency)
+[L] 查詢所有支援幣別清單 (List All Currencies)
+==============================================
+請選擇 (1-6, 0=自訂, L=清單) [預設: 1]: 1
 TWD Amount: 5000
-USD Amount: 161.155
+USD Amount: 151.9452
+```
+
+### Custom Currency Input (Option 0)
+```txt
+請選擇 (1-6, 0=自訂, L=清單) [預設: 1]: 0
+Source currency: EUR
+Target currency: JPY
+EUR Amount: 50
+JPY Amount: 8866.8711
 ```
