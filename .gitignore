@@ -4,3 +4,6 @@
 .python-version
 main.spec
 uv.lock
+.worktrees/
+__pycache__/
+.venv/

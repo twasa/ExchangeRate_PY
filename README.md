@@ -42,7 +42,7 @@ uv run python main.py
 ./build.sh
 ```
 
-The compiled standalone executable will be placed in the `dist/` directory.
+The compiled onefile executable will be placed in the `dist/` directory.
 
 ## Configuration: `common_pairs.json`
 You can customize frequently used currency pairs by editing `common_pairs.json` (auto-generated on first run):
